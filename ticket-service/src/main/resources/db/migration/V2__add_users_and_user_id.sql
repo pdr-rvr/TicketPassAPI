@@ -1,0 +1,10 @@
+CREATE TABLE users (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE
+);
+
+ALTER TABLE reservations ADD COLUMN user_id BIGINT;
+ALTER TABLE reservations ADD CONSTRAINT fk_reservations_users FOREIGN KEY (user_id) REFERENCES users(id);
+
+ALTER TABLE events ADD COLUMN status VARCHAR(50) NOT NULL DEFAULT 'ACTIVE';
